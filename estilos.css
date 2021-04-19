@@ -1,5 +1,6 @@
 .cuerpo {
     background-color: #e7e7de;
+    font-family: 'Roboto', sans-serif;
 }
 
 .titulo {
@@ -13,23 +14,28 @@
     margin: 5% 0 2% 0;
 }
 
-.botonfinalizar {
-    margin: 5% 0 3% 0;
+.botonpagar {
+    margin: 0 0 3% 0;
 }
 
 .botonvaciar {
-    margin: 0 0 5% 0;
+    margin: 0 0 10% 0;
 }
 
 .foto {
     margin: 3% 0 3% 0;
 }
 
-.totalcompra {
-    margin: 5% 0 10% 0;
+.table {
+    width: 70% !important;
+    margin: 5% 0 5% 0;
 }
 
-.table {
-    width: 50% !important;
-    margin: 0 0 10% 0;
+.fotostabla {
+    width:80px;
+    height: 100px;
+}
+
+#carrito {
+    margin-top: 10%;
 }

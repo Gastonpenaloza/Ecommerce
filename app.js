@@ -2,101 +2,82 @@
 const listadoDeProductos = $("#listadoDeProductos");
 const tablaCompra = $("#tablaCompra");
 const tituloCarrito = $("#tituloCarrito");
+const botones = $("#botones");
+const URLJSON = "datos.json";
+let productos = [];
+let carrito = [];
 
-class Productos{
-    constructor(id, nombre, imagen, precio, stock){
-        this.id=id;
-        this.nombre=nombre;
-        this.imagen=imagen;
-        this.precio=precio;
-        this.stock=stock;
-    }
-    venta(){
-        this.stock=this.stock-1;
-    }
+//carga del Html y busqueda de productos en el JSON
+$(document).ready(()=> {
+    $("#listadoDeProductos").show(()=> {
+        $.getJSON(URLJSON, (response, status)=> {
+            if (status === "success") {
+                let contenido = response
+                    productos = contenido
+                    listadoDeProductos.append(`<h2 class="subtitulo display-4 text-center">Elige tus productos</h2>`);
+                    for (const producto of contenido) {
+                        $("#listadoDeProductos").append(cargoProductos(producto))
+                    }
+            } else {
+                $("#listadoDeProductos").html(contenidoError);
+            }
+        })
+    })
+})
+
+//Contenido en caso de error
+const contenidoError = `<div class="text-center text-danger mt-5 mb-5">
+    <h2 >No se pudo recuperar el contenido</h2>
+    <h5>Intente nuevamente en unos segundos...</h5>
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-emoji-frown" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+    <path d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+    </svg>
+    </div>`;
+
+
+//Función para cargar en el HTML los productos
+let cargoProductos = (producto) => { 
+    listadoDeProductos.append(`<div class="col-md-4 col-sm-6">
+        <img src=${producto.imagen} class="foto img-thumbnail" alt=${producto.nombre}>
+        <p>${producto.nombre} - Precio $${producto.precio}</p>
+        <button type="button" class="btn btn-outline-secondary btn-sm" id="btnAgregarCarrito" onclick="compra(${producto.id})">AGREGAR</button>
+        </div>`);
 }
 
-const productos = [];
-
-productos.push(new Productos(1, "Remera lisa", "Fotos/Remerablanca.jpg", 800, 25));
-productos.push(new Productos(2, "Remera Morrissey", "Fotos/Remeramorrissey.jpg", 1200, 15));
-productos.push(new Productos(3, "Jean azul", "Fotos/Jeanazul.jpg", 3500, 30));
-productos.push(new Productos(4, "Jean negro", "Fotos/Jeannegro.jpg", 3500, 30));
-productos.push(new Productos(5, "Campera Jean", "Fotos/Camperajean.jpg", 7000, 10));
-
-
-//función para cargar en el HTML los productos
-let cargoProductos = () => { 
-    listadoDeProductos.append(`<h2 class="subtitulo display-4 text-center">Elige tus productos</h2>`);
-
-    for (let producto of productos) {
-        listadoDeProductos.append(`<div class="col-md-4 col-sm-6">
-            <img src=${producto.imagen} class="foto img-thumbnail" alt=${producto.nombre}>
-            <p>${producto.nombre} - Precio $${producto.precio}</p>
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="compra(${producto.id})">AGREGAR</button>
-            </div>`);
-    }
-   
-}
-
-
-
-
-
-//Funcion para chequear si hay info en localStorage 
-function chequearLS(){
-    let productos;
-    if (localStorage.getItem("carrito")===null){
-        productos = [];
-    } 
-    else { 
-        productos = JSON.parse(localStorage.getItem("carrito"))
-    }
-    return productos;
-}
-
-//Funcion para agregar productos
+//Funcion para agregar productos al carrito y generar tabla carrito
 function compra(id) {
     let r = productos.find(c => c.id == id);
-    if (r.stock > 0){
-        let productos;
-        productos = chequearLS();
-        productos.push(r);
-        localStorage.setItem("carrito",JSON.stringify(productos));
-        
-    } else alert("No hay stock");
-};
-
-//Funcion para finalizar comprar y generar tabla
-const finalizarCompra = () => {
+    carrito.push(r);
+    $("#productoAgregado").modal(`show`);
     tituloCarrito.html("");
     tablaCompra.html("");
-    let productos = [];
+    botones.html("");
     let totalCompra = 0;
-    productos = chequearLS();
     tituloCarrito.prepend(`<h2 class="subtitulo display-4 text-center">Carrito de Productos</h2>`);
-    tablaCompra.append(`<thead><tr><th>Cantidad</th><th>Producto</th><th>Precio</th></tr></thead>`);
-    for (const producto of productos){
+    tablaCompra.append(`<thead class="table-dark"><tr><th>Producto</th><th>Descripcion</th><th>Cantidad</th><th>Precio</th></tr></thead>`);
+    for (const producto of carrito){
         totalCompra = totalCompra + producto.precio;
-        tablaCompra.append(`<tr><td>1</td><td>${producto.nombre}</td><td>$${producto.precio}</td></tr>`);
+        tablaCompra.append(`<tr><td><img src=${producto.imagen} class="fotostabla" alt=${producto.nombre}></td><td>${producto.nombre}</td><td>1</td><td>$${producto.precio}</td></tr>`);
     }
-    tablaCompra.append(`<tr><td colspan=2>TOTAL</td><td>$${totalCompra}</td></tr>`);
+    tablaCompra.append(`<tr><td colspan=3>TOTAL</td><td>$${totalCompra}</td></tr>`)
+    botones.append(`<div class="container">
+                    <div class="text-center">
+                    <button type="button" class="botonpagar btn btn-outline-dark btn-lg">PAGAR</button>
+                    </div>
+                    <div class="text-center">
+                    <button type="button" class="botonvaciar btn btn-outline-dark btn-md" id="vaciaCarrito">VACIAR CARRITO</button>
+                    </div>
+                    </div>`);
     
 };
 
-
-//Evento para boton Finalizar compra
-$("#finalizaCompra").on("click", () => finalizarCompra());
-
-
 //Evento para boton Vaciar Carrito
-$("#vaciaCarrito").on("click", () => {localStorage.clear();
-    finalizarCompra()});
+$(document).on("click","#vaciaCarrito",()=>{
+    carrito = [];
+    tituloCarrito.html("");
+    tablaCompra.html("")
+    botones.html("");
+    $("html, body").animate({scrollTop: "0"});}
+)
 
-//Expresion IF para cargar tabla si hay productos en localStorage
-if (localStorage.getItem("carrito")===null){
-} 
-else {finalizarCompra()};
-
-//Cargo los productos en el html
-$(document).ready(cargoProductos());
