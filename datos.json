@@ -2,30 +2,35 @@
     {
         "id": 1,
         "nombre": "Remera lisa",
+        "categoria": "Remeras",
         "imagen": "Fotos/Remerablanca.jpg",
         "precio": 800
     },
     {
         "id": 2,
         "nombre": "Remera Morrissey",
+        "categoria": "Remeras",
         "imagen": "Fotos/Remeramorrissey.jpg",
         "precio": 1200
     },
     {
         "id": 3,
         "nombre": "Jean azul",
+        "categoria": "Jeans",
         "imagen": "Fotos/Jeanazul.jpg",
         "precio": 3500
     },
     {
         "id": 4,
         "nombre": "Jean negro",
+        "categoria": "Jeans",
         "imagen": "Fotos/Jeannegro.jpg",
         "precio": 3500
     },
     {
         "id": 5,
         "nombre": "Campera Jean",
+        "categoria": "Camperas",
         "imagen": "Fotos/Camperajean.jpg",
         "precio": 7000
     }

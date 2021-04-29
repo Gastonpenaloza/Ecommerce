@@ -6,16 +6,28 @@ const botones = $("#botones");
 const URLJSON = "datos.json";
 let productos = [];
 let carrito = [];
+let productosFiltrados = [];
+let pagina = "";
+
+//Animacion scroll a la barra de navegacion
+$(window).scroll(function(){
+    $('nav').toggleClass('scrolled', $(this).scrollTop() > 100);
+    });
+
+//Obtener el valor al clickear en el dropdown menu
+$('#miId .dropdown-item').click(function(){
+    pagina = $(this).html();
+  });   
 
 //carga del Html y busqueda de productos en el JSON
 $(document).ready(()=> {
     $("#listadoDeProductos").show(()=> {
         $.getJSON(URLJSON, (response, status)=> {
             if (status === "success") {
-                let contenido = response
-                    productos = contenido
-                    listadoDeProductos.append(`<h2 class="subtitulo display-4 text-center">Elige tus productos</h2>`);
-                    for (const producto of contenido) {
+                let productos = response
+                    for (const producto of productos) {
+                        
+                        listadoDeProductos.append(`<h2 class="subtitulo display-4 text-center">Elige tus productos</h2>`);
                         $("#listadoDeProductos").append(cargoProductos(producto))
                     }
             } else {
@@ -47,8 +59,8 @@ let cargoProductos = (producto) => {
 
 //Funcion para agregar productos al carrito y generar tabla carrito
 function compra(id) {
-    let r = productos.find(c => c.id == id);
-    carrito.push(r);
+    let eleccion = productos.find(c => c.id == id);
+    carrito.push(eleccion);
     $("#productoAgregado").modal(`show`);
     tituloCarrito.html("");
     tablaCompra.html("");

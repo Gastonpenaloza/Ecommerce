@@ -1,18 +1,97 @@
-.cuerpo {
-    background-color: #e7e7de;
-    font-family: 'Roboto', sans-serif;
+* { 
+    margin: 0;
+    padding: 0;
 }
 
-.titulo {
-    color: whitesmoke;
-    background-color: #0f2f57;
-    font-size: 6rem;
-    line-height: 1.5;
+body {
+    background-color: #e8e8e8;
 }
 
-.subtitulo {
-    margin: 5% 0 2% 0;
+#banner {
+    background-image: url(Fotos/fondopantalla.png);
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
+
+.navbar {
+    padding: 4% 2% 0 2%;
+}
+
+.bg-transparent.scrolled {
+    background-color: #bbbfcac1!important;
+    
+}
+
+.nav-link {
+    color:black;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.logo {
+    height: 40vw;
+    width: 40vw;
+    justify-items: center;
+    margin-top: 5%;
+}
+
+#nuevacollecion{
+    background-color: #da3131;
+}
+
+.subtitulos {
+    margin: 12% 0 5% 0;
+}
+
+.slider {
+    width: 50vh;
+    margin: 5% auto 5% auto;
+
+}
+
+.carousel .carousel-item {
+    height: 500px;
+  }
+
+.cuotasbanner {
+    padding: 0;
+}  
+
+.cuotas {
+    font-size:x-large;
+    padding: 0.5% 0 0.5% 0;
+    margin: 15% 0 0 0;
+}
+
+.footer {
+    background-color: #495464;
+    margin-top: 0;
+}
+
+.logofooter {
+    height: 350px;
+    width: 350px;
+}
+
+.redes {
+    justify-content:space-evenly;
+}
+
+.copyright {
+    font-size: 20px;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#listadoDeProductos {
+    margin-top: 15%;
+}
+
 
 .botonpagar {
     margin: 0 0 3% 0;
