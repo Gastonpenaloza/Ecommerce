@@ -14,13 +14,13 @@ $(window).scroll(function () {
 
 //contenido del home
 const home = `<div class="container-fluid" id="banner">
-<nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top">
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+  <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item">
         <a class="nav-link active me-3" aria-current="page" href="index.html">Home</a>
       </li>
@@ -41,12 +41,8 @@ const home = `<div class="container-fluid" id="banner">
       </li>
     </ul>
   </div>
-  <div class="position-relative">
-    <button onclick="cart()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-      class="bi bi-cart me-3 position-absolute end-0 translate-middle" viewBox="0 0 16 16">
-      <path
-        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-    </svg></button>
+  <div id="iconocarrito" class="position-relative">
+    
   </div>
 </nav>
 <div class="d-flex justify-content-center">
@@ -103,11 +99,25 @@ const home = `<div class="container-fluid" id="banner">
 //carga del Home
 $(document).ready(() => {
   $("#contenido").show(() => {
-    $("#contenido").html(home)
-  })
+    $("#contenido").html(home);
+    iconocarrito();
+  });
 });
 
-
+//Funcion para icono de carrito
+function iconocarrito() {
+  if (localStorage.getItem("carrito") == null) {
+    $("#iconocarrito").html(`<button onclick="cart()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+    class="bi bi-cart me-3 position-absolute end-0 translate-middle" viewBox="0 0 16 16">
+    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+  </svg></button>`)
+  }
+  else {
+    $("#iconocarrito").html(`<button onclick="cart()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart me-3 position-absolute end-0 translate-middle" viewBox="0 0 16 16">
+    <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+  </svg></button>`)
+  }
+};
 
 
 
@@ -160,12 +170,8 @@ $(document).on("click", "li #contacto", () => {
       </li>
     </ul>
   </div>
-  <div class="position-relative">
-  <button onclick="cart()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-      class="bi bi-cart me-3 position-absolute end-0 translate-middle" viewBox="0 0 16 16">
-      <path
-        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-    </svg></button>
+  <div id="iconocarrito" class="position-relative">
+  
   </div>
 </nav><h2 class="subtitulos display-4 text-center"> Contacto </h2>
   <div class="container"><p class="display-6 text-center">THE PUNISHER</p>
@@ -177,6 +183,7 @@ $(document).on("click", "li #contacto", () => {
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3285.6866628014845!2d-58.46467414880346!3d-34.561488062676816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5d55081a13f%3A0x431511e4afdc1b05!2sVidal%202375%2C%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1620078535938!5m2!1ses-419!2sar" width="100%" height="300px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   </div>`
   )
+  iconocarrito();
 });
 
 
@@ -225,16 +232,13 @@ let cargoProductos = (pagina) => {
                 </li>
               </ul>
             </div>
-            <div class="position-relative">
-            <button onclick="cart()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                class="bi bi-cart me-3 position-absolute end-0 translate-middle" viewBox="0 0 16 16">
-                <path
-                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-              </svg></button>
+            <div id="iconocarrito" class="position-relative">
+            
             </div>
           </nav><h2 class="subtitulos display-4 text-center"> ${pagina} </h2>
             <div class="container">
             <div id="listadoDeProductos" class="row">`)
+      iconocarrito();
       for (const producto of productos) {
         if (producto.categoria == pagina) {
           $("#listadoDeProductos").append(`<div class="col-xl-4 col-md-6 col-sm-12">
@@ -260,7 +264,7 @@ let cargoProductos = (pagina) => {
 };
 
 
-//Evento para boton agregar carrito
+//Evento para boton agregar a carrito
 $(document).on("click", "a.btn ", () => {
   compra(this.event.target.id)
 });
@@ -271,13 +275,15 @@ function compra(id) {
   carrito.push(eleccion);
   localStorage.setItem("carrito", JSON.stringify(carrito));
   $("#productoAgregado").modal(`show`);
+  iconocarrito();
 };
 
 //Funcion para amar HTML carrito de compra
 function cart() {
   totalCompra = 0;
-  if (localStorage.getItem("carrito") != null){
-  carrito = JSON.parse(localStorage.getItem("carrito"));}
+  if (localStorage.getItem("carrito") != null) {
+    carrito = JSON.parse(localStorage.getItem("carrito"));
+  }
   $("#contenido").html(`<nav class="navbar navbar-expand-lg navbar-light navbarshop fixed-top">
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -305,17 +311,14 @@ function cart() {
       </li>
     </ul>
   </div>
-  <div class="position-relative">
-  <button onclick="cart()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-      class="bi bi-cart me-3 position-absolute end-0 translate-middle" viewBox="0 0 16 16">
-      <path
-        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-    </svg></button>
+  <div id="iconocarrito" class="position-relative">
+  
   </div>
 </nav><h2 class="subtitulos display-4 text-center">Carrito de Productos</h2>
   <div class="container"><div class="row justify-content-center"><table class="table table-bordered border-dark align-middle"><thead class="table-dark"><tr class="text-center"><th>Producto</th><th>Descripcion</th><th>Cantidad</th><th>Precio</th></tr></thead>
   <tbody id="tablaCompra"></tbody></table></div></div>
   <div class="container" id="botones"></div>`);
+  iconocarrito();
   for (const producto of carrito) {
     totalCompra = totalCompra + producto.precio;
     $("#tablaCompra").append(`<tr><td class="text-center"><img src=${producto.imagen} class="fotostabla" alt=${producto.nombre}></td><td>${producto.nombre}</td><td class="text-end">1</td><td class="text-end">$${producto.precio}</td></tr>`);
@@ -329,7 +332,7 @@ function cart() {
                     <button type="button" class="botonvaciar btn btn-outline-dark btn-md" id="vaciaCarrito">VACIAR CARRITO</button>
                     </div>
                     </div>`);
-  
+
   $('html, body').animate({ scrollTop: 0 });
 }
 
@@ -345,6 +348,7 @@ $(document).on("click", "#vaciaCarrito", () => {
   localStorage.clear();
   totalCompra = 0;
   $("#tablaCompra").html(`<tr class="table-dark"><td colspan=3 class="text-center">TOTAL</td><td class="text-end">$${totalCompra}</td></tr>`)
+  iconocarrito();
   $("html, body").animate({ scrollTop: "0" });
 }
 );
