@@ -4,14 +4,14 @@
         "nombre": "Remera lisa",
         "categoria": "Remeras",
         "imagen": "Fotos/Remerablanca.jpg",
-        "precio": 800
+        "precio": 1200
     },
     {
         "id": 2,
         "nombre": "Remera Morrissey",
         "categoria": "Remeras",
         "imagen": "Fotos/Remeramorrissey.jpg",
-        "precio": 1200
+        "precio": 1800
     },
     {
         "id": 3,
@@ -33,5 +33,89 @@
         "categoria": "Camperas",
         "imagen": "Fotos/Camperajean.jpg",
         "precio": 7000
+    },
+    {
+        "id": 6,
+        "nombre": "Camisa Blanca",
+        "categoria": "Camisas",
+        "imagen": "Fotos/Camisablanca.jpeg",
+        "precio": 2200
+    },
+    {
+        "id": 7,
+        "nombre": "Camisa Cuadros Mostaza",
+        "categoria": "Camisas",
+        "imagen": "Fotos/Camisacuadromostaza.jpeg",
+        "precio": 2800
+    },
+    {
+        "id": 8,
+        "nombre": "Camisa Cuadros Roja",
+        "categoria": "Camisas",
+        "imagen": "Fotos/Camisacuadrorojo.png",
+        "precio": 2800
+    },
+    {
+        "id": 9,
+        "nombre": "Camisa Negra",
+        "categoria": "Camisas",
+        "imagen": "Fotos/Camisanegra.jpeg",
+        "precio": 2200
+    },
+    {
+        "id": 10,
+        "nombre": "Campera Cuero",
+        "categoria": "Camperas",
+        "imagen": "Fotos/Camperacuero.jpeg",
+        "precio": 18000
+    },
+    {
+        "id": 11,
+        "nombre": "Campera Parka",
+        "categoria": "Camperas",
+        "imagen": "Fotos/Camperaparka.jpeg",
+        "precio": 12500
+    },
+    {
+        "id": 12,
+        "nombre": "Jean Azul Oscuro",
+        "categoria": "Jeans",
+        "imagen": "Fotos/Jeanazuloscuro.jpeg",
+        "precio": 3500
+    },
+    {
+        "id": 13,
+        "nombre": "Jean Gris",
+        "categoria": "Jeans",
+        "imagen": "Fotos/Jeangris.jpeg",
+        "precio": 3500
+    },
+    {
+        "id": 14,
+        "nombre": "Remera Floyd",
+        "categoria": "Remeras",
+        "imagen": "Fotos/Remerafloyd.jpeg",
+        "precio": 1800
+    },
+    {
+        "id": 15,
+        "nombre": "Remera Rayas",
+        "categoria": "Remeras",
+        "imagen": "Fotos/Remerarayas.jpeg",
+        "precio": 1500
+    },
+    {
+        "id": 16,
+        "nombre": "Remera Trainspotting",
+        "categoria": "Remeras",
+        "imagen": "Fotos/Remeratrainspotting.jpeg",
+        "precio": 1800
+    },
+    {
+        "id": 17,
+        "nombre": "Remera Whinehouse",
+        "categoria": "Remeras",
+        "imagen": "Fotos/Remerawhinehouse.jpeg",
+        "precio": 1800
     }
 ]
